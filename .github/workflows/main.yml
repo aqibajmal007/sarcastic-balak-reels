@@ -19,3 +19,9 @@ jobs:
 
       - name: Run Reel Generator
         run: python generate_reel.py
+      - name: Upload Reel Video
+        uses: actions/upload-artifact@v4
+        with:
+          name: sarcastic-balak-reel
+          path: sarcastic_balak_reel.mp4
+          if-no-files-found: error
