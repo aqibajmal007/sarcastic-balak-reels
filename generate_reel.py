@@ -53,7 +53,9 @@ for i, line in enumerate(lines):
         
         
         
-        f"fontcolor=white:fontsize=75:"
+        
+        "fontcolor=white:fontsize=100:"
+
  
 
 
