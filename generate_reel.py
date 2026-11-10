@@ -52,7 +52,9 @@ for i, line in enumerate(lines):
         f"drawtext=text='{safe_line}':"
         
         
-        f"fontcolor=white:fontsize={min(90, max(45, 900 // max(1, len(line))))}:"
+        
+        f"fontcolor=white:fontsize={min(110, max(65, 1400 // max(1, len(line))))}:"
+
 
 
         "x=(w-text_w)/2:y=(h-text_h)/2:"
