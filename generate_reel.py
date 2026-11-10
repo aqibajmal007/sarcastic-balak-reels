@@ -2,6 +2,16 @@
 
 import subprocess
 import imageio_ffmpeg
+
+import json
+
+with open("meme_data.json", "r", encoding="utf-8") as file:
+    meme = json.load(file)
+
+reel_text = str(meme["reelText"])
+
+print("Google Sheet Reel Text loaded successfully!")
+
 # Instagram Reel format: 1080 x 1920, 7 seconds
 width = 1080
 height = 1920
