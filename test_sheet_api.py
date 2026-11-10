@@ -13,7 +13,7 @@ request_url = url + "?" + urllib.parse.urlencode({
 
 with urllib.request.urlopen(request_url, timeout=30) as response:
     data = json.load(response)
-
+meme = data["meme"]
 with open("meme_data.json", "w", encoding="utf-8") as file:
     json.dump(meme, file, ensure_ascii=False, indent=2)
 
