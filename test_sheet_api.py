@@ -14,6 +14,12 @@ request_url = url + "?" + urllib.parse.urlencode({
 with urllib.request.urlopen(request_url, timeout=30) as response:
     data = json.load(response)
 
+with open("meme_data.json", "w", encoding="utf-8") as file:
+    json.dump(meme, file, ensure_ascii=False, indent=2)
+
+print("Meme data saved to JSON file!")
+
+
 if "error" in data:
     raise RuntimeError("API authorization failed")
 
