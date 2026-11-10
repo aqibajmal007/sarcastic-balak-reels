@@ -18,20 +18,40 @@ height = 1920
 duration = 7
 
 # Simple test Reel with 3 timed meme lines
-filter_text = (
-    "drawtext=text='Salary credited':"
-    "fontcolor=white:fontsize=85:"
-    "x=(w-text_w)/2:y=(h-text_h)/2:"
-    "enable='between(t,0,2)',"
-    "drawtext=text='EMI deducted':"
-    "fontcolor=white:fontsize=85:"
-    "x=(w-text_w)/2:y=(h-text_h)/2:"
-    "enable='between(t,2,4)',"
-    "drawtext=text='Bank balance gone':"
-    "fontcolor=yellow:fontsize=80:"
-    "x=(w-text_w)/2:y=(h-text_h)/2:"
-    "enable='between(t,4,7)'"
-)
+
+lines = [
+    line.strip()
+    for line in reel_text.splitlines()
+    if line.strip()
+]
+
+if not lines:
+    raise ValueError("Google Sheet Reel Text is empty")
+
+# Each line appears for an equal part of the video
+filter_parts = []
+for i, line in enumerate(lines):
+    start = i * duration / len(lines)
+    end = (i + 1) * duration / len(lines)
+
+    # Escape special characters for FFmpeg drawtext
+    safe_line = (
+        line.replace("\\", "\\\\")
+            .replace(":", "\\:")
+            .replace("'", "\\'")
+            .replace("%", "\\%")
+            .replace(",", "\\,")
+    )
+
+    filter_parts.append(
+        f"drawtext=text='{safe_line}':"
+        "fontcolor=white:fontsize=65:"
+        "x=(w-text_w)/2:y=(h-text_h)/2:"
+        f"enable='between(t,{start:.2f},{end:.2f})'"
+    )
+
+filter_text = ",".join(filter_parts)
+
 
 command = [
     imageio_ffmpeg.get_ffmpeg_exe(), "-y",
