@@ -45,7 +45,9 @@ for i, line in enumerate(lines):
 
     filter_parts.append(
         f"drawtext=text='{safe_line}':"
-        "fontcolor=white:fontsize=65:"
+        
+        f"fontcolor=white:fontsize={min(65, max(20, 850 // max(1, len(line))))}:"
+
         "x=(w-text_w)/2:y=(h-text_h)/2:"
         f"enable='between(t,{start:.2f},{end:.2f})'"
     )
