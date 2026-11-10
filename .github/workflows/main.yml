@@ -23,6 +23,12 @@ jobs:
           python -m pip install --disable-pip-version-check imageio-ffmpeg
           echo "$(python -c 'import imageio_ffmpeg, os; print(os.path.dirname(imageio_ffmpeg.get_ffmpeg_exe()))')" >> "$GITHUB_PATH"
 
+      - name: Test Google Sheet Connection
+        env:
+          MEME_API_URL: ${{ secrets.MEME_API_URL }}
+          MEME_API_KEY: ${{ secrets.MEME_API_KEY }}
+        run: python test_sheet_api.py
+
 
       - name: Run Reel Generator
         run: python generate_reel.py
