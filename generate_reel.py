@@ -21,7 +21,7 @@ duration = 7
 
 lines = [
     line.strip()
-    for line in reel_text.splitlines()
+    for line in reel_text.replace("|", "\n").splitlines()
     if line.strip()
 ]
 
