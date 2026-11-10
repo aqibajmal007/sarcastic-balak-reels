@@ -53,7 +53,8 @@ for i, line in enumerate(lines):
         
         
         
-        f"fontcolor=white:fontsize={min(110, max(65, 1400 // max(1, len(line))))}:"
+        f"fontcolor=white:fontsize=75:"
+ max(65, 1400 // max(1, len(line))))}:"
 
 
 
