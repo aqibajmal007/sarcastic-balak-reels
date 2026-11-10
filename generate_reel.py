@@ -10,6 +10,11 @@ with open("meme_data.json", "r", encoding="utf-8") as file:
 
 reel_text = str(meme["reelText"])
 
+reel_text = "".join(
+    char for char in reel_text
+    if ord(char) < 0x2600
+)
+
 print("Google Sheet Reel Text loaded successfully!")
 
 # Instagram Reel format: 1080 x 1920, 7 seconds
