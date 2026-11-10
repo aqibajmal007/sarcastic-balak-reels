@@ -1,7 +1,7 @@
 
 
 import subprocess
-
+import imageio_ffmpeg
 # Instagram Reel format: 1080 x 1920, 7 seconds
 width = 1080
 height = 1920
@@ -24,7 +24,7 @@ filter_text = (
 )
 
 command = [
-    "ffmpeg", "-y",
+    imageio_ffmpeg.get_ffmpeg_exe(), "-y",
     "-f", "lavfi",
     "-i", f"color=c=0x161622:s={width}x{height}:r=24",
     "-f", "lavfi",
