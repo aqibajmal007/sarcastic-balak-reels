@@ -33,7 +33,9 @@ for part in reel_text.replace("|", "\n").splitlines():
         lines.extend(
             textwrap.wrap(
                 part,
-                width=15,
+                
+                
+                width=22,
                 break_long_words=False
             )
         )
