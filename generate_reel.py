@@ -4,6 +4,7 @@ import subprocess
 import imageio_ffmpeg
 
 import json
+import textwrap
 
 with open("meme_data.json", "r", encoding="utf-8") as file:
     meme = json.load(file)
