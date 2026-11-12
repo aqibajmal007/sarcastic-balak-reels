@@ -16,6 +16,10 @@ with urllib.request.urlopen(request_url, timeout=30) as response:
 
 clips = data.get("clips", [])
 print("Total funny clips received:", len(clips))
+
+with open("clips_data.json", "w", encoding="utf-8") as file:
+    json.dump(clips, file, ensure_ascii=False, indent=2)
+
 if len(clips) != 3:
     raise ValueError("Expected 3 funny clips from Google Drive")
 
