@@ -25,11 +25,19 @@ duration = 7
 
 # Simple test Reel with 3 timed meme lines
 
-lines = [
-    line.strip()
-    for line in reel_text.replace("|", "\n").splitlines()
-    if line.strip()
-]
+
+lines = []
+for part in reel_text.replace("|", "\n").splitlines():
+    part = part.strip()
+    if part:
+        lines.extend(
+            textwrap.wrap(
+                part,
+                width=15,
+                break_long_words=False
+            )
+        )
+
 
 if not lines:
     raise ValueError("Google Sheet Reel Text is empty")
