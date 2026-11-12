@@ -4,6 +4,16 @@ import subprocess
 import imageio_ffmpeg
 
 import json
+
+import os
+
+clips_file = os.environ.get("CLIPS_DATA_FILE", "clips_data.json")
+
+with open(clips_file, "r", encoding="utf-8") as file:
+    clips = json.load(file)
+
+print("Reel Generator received clips:", len(clips))
+
 import textwrap
 
 with open("meme_data.json", "r", encoding="utf-8") as file:
