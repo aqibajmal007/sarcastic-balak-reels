@@ -87,16 +87,17 @@ for i, line in enumerate(lines):
             .replace(",", "\\,")
     )
 
+        wrapped_lines = textwrap.wrap(line, width=15, break_long_words=False)
+    text_file = f"/tmp/meme_{i}.txt"
+
+    with open(text_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(wrapped_lines))
+
     filter_parts.append(
-        f"drawtext=text='{safe_line}':"
-   
-        
-        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=yellow:fontsize=65:borderw=6:bordercolor=black:"
-
- 
-
-
-"fix_bounds=1:"
+        f"drawtext=textfile={text_file}:"
+        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:"
+        "fontcolor=yellow:fontsize=65:borderw=6:bordercolor=black:"
+        "fix_bounds=1:"
         "x=(w-text_w)/2:y=h*0.17:"
         f"enable='between(t,{start:.2f},{end:.2f})'"
     )
