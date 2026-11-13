@@ -99,8 +99,10 @@ print("Selected funny video:", selected_video)
 
 command = [
     imageio_ffmpeg.get_ffmpeg_exe(), "-y",
-    "-f", "lavfi",
-    "-i", f"color=c=0x161622:s={width}x{height}:r=24",
+    
+    "-stream_loop", "-1",
+    "-i", selected_video,
+
     "-f", "lavfi",
     "-i", "anullsrc=r=44100:cl=stereo",
     "-vf", filter_text,
