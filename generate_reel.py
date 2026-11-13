@@ -87,7 +87,7 @@ for i, line in enumerate(lines):
             .replace(",", "\\,")
     )
 
-        wrapped_lines = textwrap.wrap(line, width=15, break_long_words=False)
+    wrapped_lines = textwrap.wrap(line, width=15, break_long_words=False)
     text_file = f"/tmp/meme_{i}.txt"
 
     with open(text_file, "w", encoding="utf-8") as f:
