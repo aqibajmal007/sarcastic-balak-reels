@@ -20,6 +20,7 @@ jobs:
       
       - name: Install FFmpeg
         run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
           
           python -m pip install --disable-pip-version-check imageio-ffmpeg google-api-python-client google-auth
 
