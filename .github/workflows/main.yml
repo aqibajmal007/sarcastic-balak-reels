@@ -32,6 +32,12 @@ jobs:
         run: python test_sheet_api.py
 
 
+      - name: Download Funny Clips
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: python download_clips.py
+
+
       - name: Run Reel Generator
 
         env:
