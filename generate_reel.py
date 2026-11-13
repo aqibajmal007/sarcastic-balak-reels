@@ -31,6 +31,27 @@ print("Google Sheet Reel Text loaded successfully!")
 # Instagram Reel format: 1080 x 1920, 7 seconds
 width = 1080
 height = 1920
+from pathlib import Path
+
+video_files = sorted(Path("funny_clips").glob("clip_*.mp4"))
+if not video_files:
+    raise RuntimeError("Funny clips download nahi hui")
+
+selected_video = str(video_files[0])
+print("Selected funny video:", selected_video)
+
+video_duration = subprocess.check_output(
+    [
+        "ffprobe", "-v", "error",
+        "-show_entries", "format=duration",
+        "-of", "default=noprint_wrappers=1:nokey=1",
+        selected_video
+    ],
+    text=True
+).strip()
+
+duration = float(video_duration)
+print("Original video duration:", duration)
 
 
 
@@ -90,27 +111,6 @@ for i, line in enumerate(lines):
 filter_text = ",".join(filter_parts)
 
 
-from pathlib import Path
-
-video_files = sorted(Path("funny_clips").glob("clip_*.mp4"))
-if not video_files:
-    raise RuntimeError("Funny clips download nahi hui")
-
-selected_video = str(video_files[0])
-print("Selected funny video:", selected_video)
-
-video_duration = subprocess.check_output(
-    [
-        "ffprobe", "-v", "error",
-        "-show_entries", "format=duration",
-        "-of", "default=noprint_wrappers=1:nokey=1",
-        selected_video
-    ],
-    text=True
-).strip()
-
-duration = float(video_duration)
-print("Original video duration:", duration)
 
 
 command = [
