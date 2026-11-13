@@ -68,7 +68,7 @@ for part in reel_text.replace("|", "\n").splitlines():
                 part,
                 
                 
-                width=22,
+                width=15,
                 break_long_words=False
             )
         )
@@ -98,13 +98,13 @@ for i, line in enumerate(lines):
         
         
         
-        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=white:fontsize=85:borderw=6:bordercolor=black:"
+        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=yellow:fontsize=85:borderw=6:bordercolor=black:"
 
  
 
 
 
-        "x=(w-text_w)/2:y=(h-text_h)/2:"
+        "x=(w-text_w)/2:y=h*0.25:"
         f"enable='between(t,{start:.2f},{end:.2f})'"
     )
 
