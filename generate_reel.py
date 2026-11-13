@@ -88,6 +88,15 @@ for i, line in enumerate(lines):
 filter_text = ",".join(filter_parts)
 
 
+from pathlib import Path
+
+video_files = sorted(Path("funny_clips").glob("clip_*.mp4"))
+if not video_files:
+    raise RuntimeError("Funny clips download nahi hui")
+
+selected_video = str(video_files[0])
+print("Selected funny video:", selected_video)
+
 command = [
     imageio_ffmpeg.get_ffmpeg_exe(), "-y",
     "-f", "lavfi",
