@@ -98,7 +98,7 @@ for i, line in enumerate(lines):
         
         
         
-        "fontcolor=white:fontsize=100:"
+        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=white:fontsize=85:borderw=6:bordercolor=black:"
 
  
 
