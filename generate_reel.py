@@ -31,7 +31,9 @@ print("Google Sheet Reel Text loaded successfully!")
 # Instagram Reel format: 1080 x 1920, 7 seconds
 width = 1080
 height = 1920
-duration = 7
+
+
+
 
 # Simple test Reel with 3 timed meme lines
 
@@ -97,16 +99,32 @@ if not video_files:
 selected_video = str(video_files[0])
 print("Selected funny video:", selected_video)
 
+video_duration = subprocess.check_output(
+    [
+        "ffprobe", "-v", "error",
+        "-show_entries", "format=duration",
+        "-of", "default=noprint_wrappers=1:nokey=1",
+        selected_video
+    ],
+    text=True
+).strip()
+
+duration = float(video_duration)
+print("Original video duration:", duration)
+
+
 command = [
     imageio_ffmpeg.get_ffmpeg_exe(), "-y",
     
-    "-stream_loop", "-1",
+    
     "-i", selected_video,
 
     "-f", "lavfi",
     "-i", "anullsrc=r=44100:cl=stereo",
-    "-vf", filter_text,
-    "-t", str(duration),
+    
+    "-vf", f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},{filter_text}",
+
+    
     "-c:v", "libx264",
     "-preset", "ultrafast",
     "-pix_fmt", "yuv420p",
