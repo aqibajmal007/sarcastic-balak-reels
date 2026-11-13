@@ -78,8 +78,8 @@ for i, line in enumerate(lines):
     end = (i + 1) * duration / len(lines)
 
     # Escape special characters for FFmpeg drawtext  
- safe_line = (
-        line.replace("\\", "\\\\")
+    safe_line = (
+    line.replace("\\", "\\\\")
             .replace(":", "\\:")
             .replace("'", "\\'")
             .replace("%", "\\%")
@@ -88,9 +88,7 @@ for i, line in enumerate(lines):
 
     filter_parts.append(
         f"drawtext=text='{safe_line}':"
-        
-        
-        
+   
         
         "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=yellow:fontsize=85:borderw=6:bordercolor=black:"
 
