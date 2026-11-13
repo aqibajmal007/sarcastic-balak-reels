@@ -42,7 +42,7 @@ print("Selected funny video:", selected_video)
 
 video_duration = subprocess.check_output(
     [
-        "ffprobe", "-v", "error",
+        "/usr/bin/ffprobe", "-v", "error",
         "-show_entries", "format=duration",
         "-of", "default=noprint_wrappers=1:nokey=1",
         selected_video
