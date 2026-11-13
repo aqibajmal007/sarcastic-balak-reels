@@ -59,19 +59,13 @@ print("Original video duration:", duration)
 # Simple test Reel with 3 timed meme lines
 
 
-lines = []
-for part in reel_text.replace("|", "\n").splitlines():
-    part = part.strip()
-    if part:
-        lines.extend(
-            textwrap.wrap(
-                part,
-                
-                
-                width=15,
-                break_long_words=False
-            )
-        )
+
+lines = [
+    part.strip()
+    for part in reel_text.replace("|", "\n").splitlines()
+    if part.strip()
+]
+
 
 
 if not lines:
