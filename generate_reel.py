@@ -77,8 +77,8 @@ for i, line in enumerate(lines):
     start = i * duration / len(lines)
     end = (i + 1) * duration / len(lines)
 
-    # Escape special characters for FFmpeg drawtext
-    safe_line = (
+    # Escape special characters for FFmpeg drawtext  
+ safe_line = (
         line.replace("\\", "\\\\")
             .replace(":", "\\:")
             .replace("'", "\\'")
@@ -97,7 +97,7 @@ for i, line in enumerate(lines):
  
 
 
-
+"fix_bounds=1:"
         "x=(w-text_w)/2:y=h*0.25:"
         f"enable='between(t,{start:.2f},{end:.2f})'"
     )
