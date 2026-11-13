@@ -60,11 +60,11 @@ print("Original video duration:", duration)
 
 
 
-lines = [
-    part.strip()
-    for part in reel_text.replace("|", "\n").splitlines()
-    if part.strip()
-]
+lines = []
+for part in reel_text.replace("|", "\n").splitlines():
+    part = part.strip()
+    if part:
+        lines.extend(textwrap.wrap(part, width=15, break_long_words=False))
 
 
 
@@ -78,6 +78,7 @@ for i, line in enumerate(lines):
     end = (i + 1) * duration / len(lines)
 
     # Escape special characters for FFmpeg drawtext  
+    
     safe_line = (
     line.replace("\\", "\\\\")
             .replace(":", "\\:")
@@ -90,13 +91,13 @@ for i, line in enumerate(lines):
         f"drawtext=text='{safe_line}':"
    
         
-        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=yellow:fontsize=85:borderw=6:bordercolor=black:"
+        "fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:fontcolor=yellow:fontsize=65:borderw=6:bordercolor=black:"
 
  
 
 
 "fix_bounds=1:"
-        "x=(w-text_w)/2:y=h*0.25:"
+        "x=(w-text_w)/2:y=h*0.17:"
         f"enable='between(t,{start:.2f},{end:.2f})'"
     )
 
